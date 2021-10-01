@@ -1,18 +1,20 @@
 #Get every day every hour count percentage
 #type:data = [2021,1,1]
 import couchdb
+import serve
+import os
 
 
 try:
-    couch = couchdb.Server('http://user:pass@127.0.0.1:5984')
+    couch = couchdb.Server(serve.getserve()[0])
     db = couch['tweet']
 except:
     try:
-        couch = couchdb.Server('http://user:pass@172.26.131.22:5984')
+        couch = couchdb.Server(serve.getserve()[1])
         db = couch['tweet']
     except:
         try:
-            couch = couchdb.Server('http://user:pass@172.26.133.132:5984')
+            couch = couchdb.Server(serve.getserve()[2])
             db = couch['tweet']
         except Exception as e:
             print("Can not access to the database! \n Please Check your internet.")

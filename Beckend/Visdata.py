@@ -3,20 +3,21 @@ import json
 import pandas as pd
 import couchdb
 import os
+import serve
 
 path = os.getcwd()
 
 
 try:
-    couch = couchdb.Server('http://user:pass@127.0.0.1:5984')
+    couch = couchdb.Server(serve.getserve()[0])
     db = couch['tweet']
 except:
     try:
-        couch = couchdb.Server('http://user:pass@172.26.131.22:5984')
+        couch = couchdb.Server(serve.getserve()[1])
         db = couch['tweet']
     except:
         try:
-            couch = couchdb.Server('http://user:pass@172.26.133.132:5984')
+            couch = couchdb.Server(serve.getserve()[2])
             db = couch['tweet']
         except Exception as e:
             print("Can not access to the database! \n Please Check your internet.")
