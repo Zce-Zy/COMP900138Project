@@ -112,26 +112,26 @@ def get_word_cloud(text):
     return img_base64
 
 ##spend to much time, run once and get the answer,put in to benkhand
-def quicktest1():
+def quicktest1(name):
     path = os.getcwd()
     with open( path + '/exdata/10place_oneday.json') as f:
         data = json.load(f)
-    return data
+    return data[name]
 
 def quicktest2(name):
     path = os.getcwd()
-    with open( path + '/exdata/10place_hour.json') as f:
+    with open( path + '/exdata/'+name+'.json') as f:
         data = json.load(f)
-    return data[name]
+    return data
 
 def get_place_info(place):
     allinfo = {}
     point = []
     Text = ""
-    for item in db.view('Sentiment/Coordinates',stale = "update_after"):
+    for item in db.view('CountData/Cor_ByYMDH', stale = "update_after",include_docs = True):
         if place.contains(Point(item['value'])):
             point.append(item['value'])
-            Text += tweet_clean(item['key'][1])
+            Text += tweet_clean(item['doc']['text'])
     wordpic = get_word_cloud(Text)
     freq = word_count(Text)
     allinfo['points'] = point
@@ -148,12 +148,12 @@ def get_hour_place(place):
     for i in range(0,24):
         point[i] = []
         text[i] = ""
-    for item in db.view('Sentiment/Coordinates',stale = "update_after"):
+    for item in db.view('CountData/Cor_ByYMDH', stale = "update_after",include_docs = True):
         if place.contains(Point(item['value'])):
             for i in range(0,24):
                 if int(item['key'][0]) == i:
                     point[i].append(item['value'])
-                    text[i] += tweet_clean(item['key'][1])
+                    text[i] += tweet_clean(item['doc']['text'])
                     break
     for i in range(0,24):
         pic[i] = get_word_cloud(text[i])
@@ -166,14 +166,16 @@ def get_hour_place(place):
     output['word'] = changetime(word)
     return output
 
-def day_place():
+def day_place(name:str):
     all_data = {}
     for i in range(10):
-        all_data[place_name[i]] = get_place_info(ten_place[i])
+        if place_name[i] == name:
+            all_data[place_name[i]] = get_place_info(ten_place[i])
     return all_data
 
-def hour_place():
+def hour_place(name:str):
     all_data = {}
     for i in range(10):
-        all_data[place_name[i]] = get_hour_place(ten_place[i])
+        if place_name[i] == name:
+            all_data[place_name[i]] = get_hour_place(ten_place[i])
     return all_data

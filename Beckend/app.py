@@ -11,6 +11,7 @@ import plot2
 import scater
 import place
 import cluster
+import Prediction
 from importlib import reload
 
 app = Flask(__name__)
@@ -94,15 +95,26 @@ class flickrclusterh(Resource):
         return data
 
 class tenplace(Resource):
-    def get(self):
+    def get(self,name):
         reload(place)
-        data = place.quicktest1()
+        data = place.quicktest1(name)
         return data
 
 class tenplace_hour(Resource):
     def get(self,name):
         reload(place)
         data = place.quicktest2(name)
+        return data
+
+class predict(Resource):
+    def get(self,name):
+        reload(Prediction)
+        data = Prediction.predict_result(name)
+        return data
+class wordscore(Resource):
+    def get(self):
+        reload(Prediction)
+        data = Prediction.show_score()
         return data
 
 class Vic(Resource):
@@ -155,12 +167,17 @@ api.add_resource(flickrcluster, '/api/flickrcluster')
 api.add_resource(flickrclusterh, '/api/flickrclusterh/<time1>')
 
 
-#4.2.1 NLP Process
+#4.2.1 NLP Process show wordcloud and heat map
 #10 place whole day sample shows 10place_oneday
-api.add_resource(tenplace, '/api/tenplace/all')
-
+api.add_resource(tenplace, '/api/tenplace/<name>')
 #10 place in hour sample shows 10place_hour
 api.add_resource(tenplace_hour, '/api/tenplace/hour/<name>')
+
+#######Predict Part ###
+#This one will returen a single name of the prediction.(Have 10 places can be used)
+api.add_resource(predict, '/api/predict/<name>')
+#show word score every one have 7 to plot
+api.add_resource(wordscore, '/api/wordscore')
 
 #Vic sentiment score
 api.add_resource(Vic, '/api/Vic')
