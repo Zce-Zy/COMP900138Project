@@ -1,0 +1,28 @@
+---
+- name: install flask
+  pip:
+    name: ['flask']
+    state: latest
+
+- name: install flask_restful
+  pip:
+    name: ['flask_restful']
+    state: latest
+
+- name: install importlib
+  pip:
+    name: ['importlib']
+    state: latest
+
+#- name: install couchdb
+  #pip:
+    #name: ['couchdb']
+    #state: latest
+
+#- name: install pandas
+  #pip:
+    #name: ['pandas']
+    #state: latest
+
+- name: start backend app
+  raw: python3 /home/ubuntu/comp90024/Master-Comp90024-main/Backend/App.py

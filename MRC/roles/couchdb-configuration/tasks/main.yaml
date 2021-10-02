@@ -1,0 +1,18 @@
+---
+- name: add couchdb gpg key
+  become: yes
+  apt_key:
+    url: https://couchdb.apache.org/repo/keys.asc
+    state: present
+
+- name: copy couchdb config file to server | step1
+  become: yes
+  template:
+    src: local.ini
+    dest: /opt/couchdb/etc/local.ini
+
+- name: copy couchdb config file to server | step2
+  become: yes
+  template:
+    src: config.ini
+    dest: /opt/couchdb/etc/config.ini

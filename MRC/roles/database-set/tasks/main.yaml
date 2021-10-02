@@ -1,0 +1,35 @@
+---
+- name: install couchdb
+  pip:
+    name: ['couchdb']
+    state: latest
+
+- name: install tweepy
+  pip:
+    name: ['tweepy']
+    state: latest
+
+- name: install pandas
+  pip:
+    name: ['pandas']
+    state: latest
+
+- name: install textblob
+  pip:
+    name: ['textblob']
+    state: latest
+
+- name: upload data1
+  raw: python3 /home/ubuntu/comp90024/Master-Comp90024-main/couchDB/data_1.py
+
+- name: upload data2
+  raw: python3 /home/ubuntu/comp90024/Master-Comp90024-main/couchDB/data_2.py
+
+- name: upload data3
+  raw: python3 /home/ubuntu/comp90024/Master-Comp90024-main/couchDB/data_3.py
+
+- name: upload data4
+  raw: python3 /home/ubuntu/comp90024/Master-Comp90024-main/couchDB/data_4.py
+
+- name: creat and update couchdb
+  raw: python3 /home/ubuntu/comp90024/Master-Comp90024-main/couchDB/createAndUploadCouchdb.py

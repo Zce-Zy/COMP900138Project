@@ -1,0 +1,7 @@
+---
+- name: copy couchdb config file to masterNode
+  become: yes
+  template:
+    src: vm.args
+    dest: /opt/couchdb/etc/vm.args
+

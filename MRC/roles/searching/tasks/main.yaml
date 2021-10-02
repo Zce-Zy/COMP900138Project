@@ -1,0 +1,3 @@
+---
+- name: get history data
+  raw: python3 /home/ubuntu/comp90024/Master-Comp90024-main/couchDB/searching.py
