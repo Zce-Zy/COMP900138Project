@@ -1,0 +1,24 @@
+{
+    "_id": "_design/CountData",
+    "views": {
+      "Count_ByYMDH": {
+        "reduce": "_stats",
+        "map": "function (doc) {\n  emit([doc.year,doc.month,doc.day,doc.hours], 1);\n}"
+      },
+      "Count_ByH": {
+        "reduce": "_sum",
+        "map": "function (doc) {\n  emit([doc.hours], 1);\n}"
+      },
+      "Cor_ByYMDH": {
+        "map": "function (doc) {if(doc.coordinates){\n  emit([doc.year,doc.month,doc.day,doc.hours], doc.coordinates);\n}}"
+      },
+      "CountID": {
+        "map": "function (doc) {\n  emit(doc.id, 1);\n}"
+      },
+      "text": {
+        "map": "function (doc) {\n  emit([doc.year,doc.month,doc.day,doc.hours], doc.text);\n}"
+        }
+    },
+
+    "language": "javascript"
+  }
