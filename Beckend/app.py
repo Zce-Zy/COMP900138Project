@@ -24,7 +24,7 @@ api = Api(app)
 def index():
     return render_template('index.html')
 
-@app.route('/api', methods=['GET'], endpoint = "overview")
+@app.route('/api', methods=['GET'], endpoint = "over")
 
 
 class dailyview(Resource):
@@ -129,6 +129,50 @@ class Lga_senti(Resource):
         data = Visdata.lga_year()
         return data
 
+class vicsenti(Resource):
+    def get(self):
+        reload(Visdata)
+        data = Visdata.sentivic()
+        return data
+
+#get one day hashtag
+class hashtag(Resource):
+    def get(self,date):
+        reload(Prediction)
+        data = Prediction.get_hashtag(date)
+        return data
+
+#get one day hashtag
+class topwords(Resource):
+    def get(self,date):
+        reload(Prediction)
+        data = Prediction.get_frequent_words(date)
+        return data
+
+#2021,1
+class everyday(Resource):
+    def get(self,date):
+        reload(Prediction)
+        data = Prediction.overview(date)
+        return data
+
+#get one day topic
+class topicday(Resource):
+    def get(self,date):
+        reload(Prediction)
+        data = Prediction.topic_date(date)
+        return data
+
+#get one day topic
+class topicplace(Resource):
+    def get(self,place):
+        reload(Prediction)
+        data = Prediction.topic_location(place)
+        return data
+
+
+#Total Count with different platform monthly  everyday_data
+api.add_resource(everyday, '/api/test/<date>')
 
 #every day change plot
 #date is [2021,7,21]
@@ -146,9 +190,9 @@ api.add_resource(visplatform, '/api/showvar')
 #all scater show sample shows in allscater
 #data format is allscater.json not important 
 api.add_resource(allscater, '/api/scater/all')
-#show all points by day  date = [2021,7,21]
+#show all points by day  date = 2021,7,21
 api.add_resource(dayscater, '/api/scater/day/<date>')
-#show all points by hour date = [2021,7,21,1]
+#show all points by hour date = 2021,7,21,1
 api.add_resource(hourscater, '/api/scater/hour/<date>')
 
 ###########################################
@@ -179,11 +223,31 @@ api.add_resource(predict, '/api/predict/<name>')
 #show word score every one have 7 to plot
 api.add_resource(wordscore, '/api/wordscore')
 
-#Vic sentiment score
+
+#Vic sentiment score by year
 api.add_resource(Vic, '/api/Vic')
-#Vic sentiment score
+
+#Vic sentiment score each lga
 api.add_resource(Lga_senti, '/api/Lga_senti')
+
+#New for Recent Build
+
+#Summary of the count of each type
+api.add_resource(vicsenti, '/api/vicsenti')
+
+#get hashtag
+api.add_resource(hashtag, '/api/hashtag/<date>')
+
+#get words
+api.add_resource(topwords, '/api/topwords/<date>')
+
+#Hot Topic Part
+#day topic in the city
+api.add_resource(topicday, '/api/topicday/<date>')
+#place hot topics
+api.add_resource(topicplace, '/api/topicplace/<place>')
+
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run(port=8080)

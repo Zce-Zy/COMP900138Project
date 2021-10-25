@@ -1,6 +1,6 @@
 import couchdb
 import serve
-
+import ast
 
 ##link to our couchdb
 try:
@@ -52,6 +52,8 @@ def get_allthree():
 #datetype = [2021,9,20]
 def get_daypoint(date):
     ##reduce search time
+    date = ast.literal_eval(date)
+    date = [int(n) for n in date]
     dateend = date.copy()
     dateend[2] += 1
     tweet = []
@@ -87,30 +89,36 @@ def get_daypoint(date):
 #Time change
 def get_hourpoint(date):
     ##reduce search time
-    dateend = date.copy()
-    dateend[2] += 1
+    date = ast.literal_eval(date)
+    date = [int(n) for n in date]
     tweet = []
     flickr = []
     youtube = []
     date[-1] = date[-1]-14
     if date[-1] < 0:
         date[-1] += date[-1] + 24
+    dateend = date.copy()
+    dateend[-1] += 1
+    date[-1] = str(date[-1])
+    dateend[-1] = str(dateend[-1])
+    print(date)
+    print(dateend)
     for item in dbt.view('CountData/Cor_ByYMDH', stale = "update_after",include_docs=True,start_key = date, end_key = dateend):
-        if int(item['key'][-1]) == date[-1]:
+        if int(item['key'][-1]) == int(date[-1]):
             point = []
             point.append(item['doc']['text'])
             point.append(item['value'])
             point.append(item['doc']['sentiment_score'])
             tweet.append(point)
     for item in dbf.view('CountData/Cor_ByYMDH', stale = "update_after",include_docs=True,start_key = date, end_key = dateend):
-        if int(item['key'][-1]) == date[-1]:
+        if int(item['key'][-1]) == int(date[-1]):
             point = []
             point.append(item['doc']['text'])
             point.append([float(item['value'][0]),float(item['value'][1])])
             point.append(0)
             flickr.append(point)
     for item in dby.view('CountData/Cor_ByYMDH', stale = "update_after",include_docs=True,start_key = date, end_key = dateend):
-        if int(item['key'][-1]) == date[-1]:
+        if int(item['key'][-1]) == int(date[-1]):
             point = []
             point.append(item['doc']['text'])
             point.append(item['value'])

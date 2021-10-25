@@ -6,12 +6,9 @@ import string
 import re
 from nltk.corpus import stopwords
 from nltk.tokenize import TweetTokenizer
-import pandas as pd
 from wordcloud import WordCloud
 import io
 import base64
-import pandas as pd
-import wordcloud
 import serve
 from shapely.geometry import shape, Point, Polygon
 
@@ -87,6 +84,9 @@ def word_count(str):
     high = dict(sorted(counts.items(), key=lambda item: item[1],reverse=True))
     
     return high
+
+
+
 def changetime(dic):
     changetime=[]
     for key, value in dic.items():
@@ -129,7 +129,7 @@ def get_place_info(place):
     point = []
     Text = ""
     for item in db.view('CountData/Cor_ByYMDH', stale = "update_after",include_docs = True):
-        if place.contains(Point(item['value'])):
+        if ten_place[place_name.index(place)].contains(Point(item['value'])):
             point.append(item['value'])
             Text += tweet_clean(item['doc']['text'])
     wordpic = get_word_cloud(Text)
@@ -149,7 +149,7 @@ def get_hour_place(place):
         point[i] = []
         text[i] = ""
     for item in db.view('CountData/Cor_ByYMDH', stale = "update_after",include_docs = True):
-        if place.contains(Point(item['value'])):
+        if ten_place[place_name.index(place)].contains(Point(item['value'])):
             for i in range(0,24):
                 if int(item['key'][0]) == i:
                     point[i].append(item['value'])

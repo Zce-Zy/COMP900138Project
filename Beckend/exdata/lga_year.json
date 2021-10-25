@@ -1,1 +1,331 @@
-{"2015": [{"Alpine Shire": 0.39285714285714285}, {"City of Ballara": 0.1625}, {"City of Greater Bendigo": 0.115625}, {"City of Greater Geelong": 0.3421296296296296}, {"City of Hume": -0.0625}, {"City of Melbourne": 0.05629780521521023}, {"City of Yarra": 0.0}, {"Shire of Campaspe": 0.0}, {"Shire of Towong": 0.0}, {"Surf Coast Shire": 0.0}], "2016": [{"Alpine Shire": 0.1}, {"Bass Coast Shire": 0.2532670454545455}, {"Borough of Queenscliffe": 0.0}, {"City of Ballara": 0.13762254901960783}, {"City of Greater Geelong": 0.13825757575757575}, {"City of Hume": 0.03178661616161617}, {"City of Melbourne": 0.11267767916499956}, {"City of Stonnington": 0.13333333333333333}, {"City of Warrnambool": 0.0}, {"City of Wodonga": 0.5416666666666666}, {"City of Yarra": 0.24444444444444446}, {"Colac Otway Shire": 0.0}, {"Shire of Cardinia": -0.390625}], "2017": [{"Alpine Shire": 0.0}, {"Borough of Queenscliffe": 0.4375}, {"City of Ballara": 0.333323146235078}, {"City of Boroondara": 0.0}, {"City of Greater Bendigo": 0.3333333333333333}, {"City of Greater Geelong": 0.10899481951871658}, {"City of Greater Shepparton": 0.3666666666666667}, {"City of Hume": 0.01666666666666667}, {"City of Kingston": 0.875}, {"City of Melbourne": 0.10556571415625891}, {"City of Melton": -0.2263888888888889}, {"City of Stonnington": 0.0}, {"City of Warrnambool": 0.06818181818181818}, {"City of Wyndham": 0.0}, {"City of Yarra": 0.0}, {"Rural City of Mildura": 0.375}, {"Shire of Hepburn": 0.0}, {"Shire of Indigo": 0.1778409090909091}, {"Shire of Macedon Ranges": 0.07708333333333334}, {"Shire of Mansfield": -0.09351851851851851}, {"Shire of Mitchell": 0.25}, {"Shire of Moira": 0.18661616161616162}, {"Shire of Mornington Peninsula": 0.09166666666666667}, {"Shire of Yarra Ranges": 0.0}, {"South Gippsland Shire": 0.25}, {"Surf Coast Shire": 0.20416666666666664}], "2018": [{"Alpine Shire": 0.27741161616161614}, {"Bass Coast Shire": 0.2508627946127946}, {"Borough of Queenscliffe": 0.3333333333333333}, {"City of Ballara": 0.30455586080586083}, {"City of Brimbank": 0.0}, {"City of Greater Bendigo": 0.004791666666666666}, {"City of Greater Geelong": 0.12894619582465708}, {"City of Greater Shepparton": -0.18181818181818182}, {"City of Hume": 0.19772727272727272}, {"City of Latrobe": 0.4166666666666667}, {"City of Manningham": 0.0}, {"City of Melbourne": 0.12385985696702363}, {"City of Monash": 0.1}, {"City of Port Phillip": 0.5}, {"City of Stonnington": 0.225}, {"City of Warrnambool": 0.13333333333333333}, {"City of Wyndham": -0.1}, {"Colac Otway Shire": 0.18339029947916666}, {"Golden Plains Shire": 0.2484375}, {"Pyrenees Shire": 0.0}, {"Rural City of Arara": 0.0}, {"Rural City of Horsham": 0.12245179063360884}, {"Rural City of Mildura": 0.04}, {"Rural City of Wangaratta": 0.225}, {"Shire of Cardinia": -0.2}, {"Shire of Macedon Ranges": 0.0}, {"Shire of Mitchell": 0.14666666666666667}, {"Shire of Moira": 0.11874999999999998}, {"Shire of Moorabool": 0.15833333333333335}, {"Shire of Mornington Peninsula": 0.31875}, {"Shire of Mount Alexander": 0.35185185185185186}, {"Shire of Moyne": 0.6875}, {"Shire of Northern Grampians": 0.6000000000000001}, {"Shire of Strathbogie": 0.033333333333333326}, {"Shire of Wellington": -0.21666666666666667}, {"Shire of Yarra Ranges": 0.19215167548500883}, {"Shire of Yarriambiack": 0.46875}, {"South Gippsland Shire": 0.2}, {"Surf Coast Shire": 0.098070987654321}], "2019": [{"Alpine Shire": 0.3219228896103897}, {"Bass Coast Shire": 0.19444444444444445}, {"Borough of Queenscliffe": 0.4444444444444444}, {"City of Ballara": 0.20007667006196414}, {"City of Brimbank": 0.045075757575757575}, {"City of Casey": 0.41250000000000003}, {"City of Greater Bendigo": 0.13116904980541344}, {"City of Greater Geelong": 0.11390124230137819}, {"City of Greater Shepparton": 0.33621794871794874}, {"City of Hume": 0.052182539682539685}, {"City of Latrobe": 0.1361421130952381}, {"City of Maroondah": 0.8}, {"City of Melbourne": 0.1666214351718005}, {"City of Melton": 0.170990147005772}, {"City of Moonee Valley": 0.35}, {"City of Moreland": 0.41818181818181815}, {"City of Port Phillip": 0.26666666666666666}, {"City of Stonnington": 0.775}, {"City of Warrnambool": 0.12870370370370368}, {"City of Whittlesea": 0.2650793650793651}, {"City of Wodonga": 0.19935322868718833}, {"City of Wyndham": 0.3446969696969697}, {"Colac Otway Shire": -0.08177083333333333}, {"Corangamite Shire": 0.07777777777777777}, {"Golden Plains Shire": -0.1777777777777778}, {"Rural City of Arara": 0.005208333333333333}, {"Rural City of Horsham": 0.10676796926796925}, {"Rural City of Mildura": 0.14057900432900433}, {"Rural City of Swan Hill": 0.21935261707988982}, {"Rural City of Wangaratta": 0.03891203703703704}, {"Shire of Baw Baw": -0.031111111111111117}, {"Shire of Buloke": 0.26666666666666666}, {"Shire of Campaspe": 0.13799272486772485}, {"Shire of Cardinia": 0.15679170173961843}, {"Shire of Central Goldfields": 0.0}, {"Shire of East Gippsland": -0.014285714285714287}, {"Shire of Gannawarra": -0.04090909090909091}, {"Shire of Glenelg": 0.1486359126984127}, {"Shire of Hepburn": 0.007575757575757574}, {"Shire of Hindmarsh": 0.27777777777777773}, {"Shire of Indigo": 0.31231060606060607}, {"Shire of Macedon Ranges": 0.1883713258713259}, {"Shire of Mansfield": 0.0}, {"Shire of Mitchell": 0.30500000000000005}, {"Shire of Moira": -0.03229166666666666}, {"Shire of Mornington Peninsula": 0.20433138528138528}, {"Shire of Mount Alexander": 0.4695546737213404}, {"Shire of Moyne": 0.290625}, {"Shire of Murrindindi": -0.16666666666666666}, {"Shire of Nillumbik": 0.265}, {"Shire of Northern Grampians": 0.16507177033492826}, {"Shire of Southern Grampians": 0.20952380952380953}, {"Shire of Strathbogie": 0.2119047619047619}, {"Shire of Wellington": 0.10631313131313132}, {"Shire of West Wimmera": 0.02666666666666666}, {"Shire of Yarra Ranges": 0.23834325396825395}, {"Shire of Yarriambiack": 0.625}, {"South Gippsland Shire": 0.3125}, {"Surf Coast Shire": 0.24178240740740745}], "2020": [{"Alpine Shire": 0.18749866692417197}, {"Bass Coast Shire": 0.11626182592242197}, {"Borough of Queenscliffe": 0.10339036289231601}, {"City of Ballara": 0.12263877299614333}, {"City of Banyule": 0.3333333333333333}, {"City of Bayside": 0.095}, {"City of Boroondara": 0.2}, {"City of Brimbank": 0.18312184343434343}, {"City of Casey": 0.11031309718809719}, {"City of Darebin": 0.18333333333333335}, {"City of Frankston": 0.07700320512820513}, {"City of Glen Eira": 0.10000000000000002}, {"City of Greater Bendigo": 0.19202069246125483}, {"City of Greater Dandenong": 0.05}, {"City of Greater Geelong": 0.12213730124913483}, {"City of Greater Shepparton": 0.1467829643034561}, {"City of Hobsons Bay": 0.13138888888888886}, {"City of Hume": 0.15068428886706198}, {"City of Kingston": 0.11145833333333333}, {"City of Knox": 0.5}, {"City of Latrobe": 0.14765911562307268}, {"City of Manningham": 0.08333333333333333}, {"City of Maribyrnong": 0.10833333333333334}, {"City of Maroondah": 0.2538992869875223}, {"City of Melbourne": 0.12302002841479918}, {"City of Melton": 0.0702849580111707}, {"City of Monash": 0.015277777777777779}, {"City of Moonee Valley": 0.6}, {"City of Moreland": 0.3240909090909091}, {"City of Port Phillip": 0.05411255411255411}, {"City of Stonnington": 0.1375}, {"City of Warrnambool": 0.11303525225912521}, {"City of Whitehorse": -0.011111111111111108}, {"City of Whittlesea": 0.029464285714285717}, {"City of Wodonga": 0.06841423410393137}, {"City of Wyndham": 0.17204545454545453}, {"City of Yarra": 0.12222222222222222}, {"Colac Otway Shire": 0.0931316806388481}, {"Corangamite Shire": 0.17393386994949495}, {"Golden Plains Shire": 0.342578125}, {"Pyrenees Shire": 0.0}, {"Rural City of Arara": 0.09967418546365918}, {"Rural City of Benalla": 0.08788938492063492}, {"Rural City of Horsham": 0.148775357853825}, {"Rural City of Mildura": 0.0769898629607599}, {"Rural City of Swan Hill": 0.08216625716625717}, {"Rural City of Wangaratta": 0.07889182886230131}, {"Shire of Baw Baw": 0.12925803410820536}, {"Shire of Buloke": 0.005681818181818181}, {"Shire of Campaspe": 0.1490215538429824}, {"Shire of Cardinia": 0.13537752571740974}, {"Shire of Central Goldfields": 1.0}, {"Shire of East Gippsland": 0.20870789879312604}, {"Shire of Gannawarra": 0.17388888888888893}, {"Shire of Glenelg": 0.0}, {"Shire of Hepburn": 0.1152468208253332}, {"Shire of Hindmarsh": 0.37222222222222223}, {"Shire of Indigo": 0.26}, {"Shire of Loddon": -0.024999999999999994}, {"Shire of Macedon Ranges": 0.17183381683902516}, {"Shire of Mansfield": 0.22948437500000002}, {"Shire of Mitchell": 0.09355032330884602}, {"Shire of Moira": 0.2578699945887446}, {"Shire of Moorabool": 0.09666002381728188}, {"Shire of Mornington Peninsula": 0.16524412316078982}, {"Shire of Mount Alexander": 0.19315037810290975}, {"Shire of Moyne": 0.07075895074870488}, {"Shire of Murrindindi": 0.25404356060606065}, {"Shire of Nillumbik": 0.04732142857142858}, {"Shire of Northern Grampians": 0.22619991582491583}, {"Shire of Southern Grampians": 0.21958028950216446}, {"Shire of Strathbogie": 0.09406114718614719}, {"Shire of Towong": 0.2333333333333333}, {"Shire of Wellington": 0.08667847304210942}, {"Shire of West Wimmera": 0.07051282051282051}, {"Shire of Yarra Ranges": 0.1860655390484936}, {"Shire of Yarriambiack": 0.08095052083333334}, {"South Gippsland Shire": 0.21686646224146225}, {"Surf Coast Shire": 0.16164023659778376}]}
+{
+    "2015": [
+        {
+            "City of Melbourne": 0.058174454925176096
+        },
+        {
+            "Melbourne": 0.02708333333333331
+        }
+    ],
+    "2016": [
+        {
+            "Ballara": 0.2916666666666667
+        },
+        {
+            "City of Melbourne": 0.10286784251597411
+        },
+        {
+            "Melbourne": 0.2952380952380952
+        },
+        {
+            "Wodonga": 0.5416666666666666
+        }
+    ],
+    "2017": [
+        {
+            "City of Melbourne": 0.09864943178317027
+        },
+        {
+            "Melbourne": 0.19862689393939395
+        }
+    ],
+    "2018": [
+        {
+            "Ballara": 0.6458333333333333
+        },
+        {
+            "Borough of Queenscliffe": 0.3333333333333333
+        },
+        {
+            "City of Melbourne": 0.11170130546395325
+        },
+        {
+            "Latrobe": 0.8333333333333334
+        },
+        {
+            "Melbourne": 0.258527065606807
+        },
+        {
+            "Mount Alexander": 0.35185185185185186
+        },
+        {
+            "Rural Arara": 0.0
+        }
+    ],
+    "2019": [
+        {
+            "Ballara": 0.7
+        },
+        {
+            "Borough of Queenscliffe": 0.4888888888888889
+        },
+        {
+            "Cardinia": 0.3229166666666667
+        },
+        {
+            "Casey": 0.1875
+        },
+        {
+            "Greater Geelong": 0.011111111111111118
+        },
+        {
+            "Hepburn": 0.0
+        },
+        {
+            "Melbourne": 0.196617644064734
+        },
+        {
+            "Mount Alexander": 0.42514172335600914
+        },
+        {
+            "Rural Arara": 0.0
+        },
+        {
+            "Rural Horsham": -0.16666666666666666
+        }
+    ],
+    "2020": [
+        {
+            "Ballara": -0.07500000000000001
+        },
+        {
+            "Bass Coas": 0.0
+        },
+        {
+            "Borough of Queenscliffe": -0.016666666666666666
+        },
+        {
+            "Campaspe": 0.0
+        },
+        {
+            "Cardinia": -0.25
+        },
+        {
+            "City of Melbourne": 0.09346123780316946
+        },
+        {
+            "East Gippsland": 0.0
+        },
+        {
+            "Greater Bendigo": 0.09049548059964725
+        },
+        {
+            "Greater Geelong": 0.12999999999999998
+        },
+        {
+            "Hepburn": 0.37
+        },
+        {
+            "Hume": 0.2041666666666667
+        },
+        {
+            "Latrobe": 0.11496913580246915
+        },
+        {
+            "Melbourne": 0.15829697775080906
+        },
+        {
+            "Melton": 0.375
+        },
+        {
+            "Moorabool": 0.06458333333333333
+        },
+        {
+            "Mount Alexander": 0.2089100033952975
+        },
+        {
+            "Rural Arara": 0.07462481962481962
+        },
+        {
+            "Rural Horsham": 0.2876646790709291
+        },
+        {
+            "Rural Mildura": 0.3111111111111111
+        },
+        {
+            "Rural Wangaratta": 0.4063492063492064
+        },
+        {
+            "Surf Coas": 0.12361111111111112
+        },
+        {
+            "Warrnambool": 0.19999999999999998
+        },
+        {
+            "Yarra Ranges": 0.0
+        }
+    ],
+    "2021": [
+        {
+            "Alpine": 0.10804843304843305
+        },
+        {
+            "Ballara": 0.11644207199884056
+        },
+        {
+            "Bass Coas": 0.2100872331691297
+        },
+        {
+            "Baw Baw": 0.09800885842552509
+        },
+        {
+            "Borough of Queenscliffe": -0.052256944444444446
+        },
+        {
+            "Buloke": 0.5681818181818181
+        },
+        {
+            "Campaspe": 0.18192355371900823
+        },
+        {
+            "Cardinia": 0.10026931621220414
+        },
+        {
+            "Casey": -0.11858866442199775
+        },
+        {
+            "City of Melbourne": 0.09036015070556713
+        },
+        {
+            "Colac Otway": 0.05032900814646848
+        },
+        {
+            "Corangamite": 0.10394716394716394
+        },
+        {
+            "East Gippsland": 0.10052022417153997
+        },
+        {
+            "Gannawarra": 0.35
+        },
+        {
+            "Glenelg": 0.13333333333333333
+        },
+        {
+            "Golden Plains": 0.14537738496071828
+        },
+        {
+            "Greater Bendigo": 0.09619591834938454
+        },
+        {
+            "Greater Geelong": 0.1186043549876485
+        },
+        {
+            "Greater Shepparton": 0.09964929911358483
+        },
+        {
+            "Hepburn": 0.1959241440377804
+        },
+        {
+            "Hindmarsh": 0.6
+        },
+        {
+            "Hume": 0.1316029893703293
+        },
+        {
+            "Indigo": 0.06253912753912753
+        },
+        {
+            "Latrobe": 0.11160136460461137
+        },
+        {
+            "Loddon": 0.25
+        },
+        {
+            "Macedon Ranges": 0.180475848539155
+        },
+        {
+            "Mansfield": 0.04666666666666667
+        },
+        {
+            "Maroondah": 0.259375
+        },
+        {
+            "Melbourne": 0.10649940687685856
+        },
+        {
+            "Melton": 0.11825245739198204
+        },
+        {
+            "Mitchell": 0.1526887293992557
+        },
+        {
+            "Moira": 0.029315741448094387
+        },
+        {
+            "Moorabool": -0.06010840936244161
+        },
+        {
+            "Mornington Peninsula": 0.10962248038419913
+        },
+        {
+            "Mount Alexander": 0.12614999630703946
+        },
+        {
+            "Moyne": 0.0799731529209622
+        },
+        {
+            "Murrindindi": -0.10138888888888889
+        },
+        {
+            "Nillumbik": 0.175
+        },
+        {
+            "Northern Grampians": 0.03961547017797019
+        },
+        {
+            "Pyrenees": 0.2875
+        },
+        {
+            "Rural Arara": 0.06983785559678417
+        },
+        {
+            "Rural Benalla": 0.08333333333333333
+        },
+        {
+            "Rural Horsham": 0.20843670071844678
+        },
+        {
+            "Rural Mildura": 0.09363883192830559
+        },
+        {
+            "Rural Swan Hill": 0.25398341049382717
+        },
+        {
+            "Rural Wangaratta": 0.06408715561894751
+        },
+        {
+            "South Gippsland": 0.10675507100223011
+        },
+        {
+            "Southern Grampians": 0.15208333333333335
+        },
+        {
+            "Strathbogie": 0.0035400633317299985
+        },
+        {
+            "Surf Coas": 0.07840562398915958
+        },
+        {
+            "Warrnambool": 0.09872828999034787
+        },
+        {
+            "Wellington": 0.12060017467912207
+        },
+        {
+            "Whitehorse": 0.5420138888888889
+        },
+        {
+            "Whittlesea": -0.16666666666666666
+        },
+        {
+            "Wodonga": 0.13019433936188307
+        },
+        {
+            "Yarra Ranges": 0.0065898111550285465
+        },
+        {
+            "Yarriambiack": 0.2041666666666667
+        }
+    ]
+}

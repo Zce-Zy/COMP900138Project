@@ -51,10 +51,37 @@ def varishow():
     return data
 
 ##Vic_total
+listdata = []
+
+for item in db.view('SummaryByRegion/Count_BylgaNameYearSentimentType',group = True,stale = "update_after"):
+        lis = [item["key"][0].strip('\\t'),item["key"][1], item["key"][2], item["value"]]
+        listdata.append(lis)
+
+
+
+def sentivic():
+    new_dic = {}
+    for element in listdata:
+        new_dic[element[1]] = {}
+
+    for element in listdata:
+        new_dic[element[1]] ["negative"] = 0
+        new_dic[element[1]] ["positive"] = 0
+        new_dic[element[1]] ["neutral"] = 0
+    for element in listdata:
+        new_dic[element[1]] [element[2]] += element[3]
+    for element in listdata:
+        new_dic[element[1]] ["total"] = new_dic[element[1]]["negative"] + new_dic[element[1]]["neutral"] + new_dic[element[1]]["positive"]
+        new_dic[element[1]] ["neg_per"] = new_dic[element[1]]["negative"]/new_dic[element[1]] ["total"]
+        new_dic[element[1]] ["neu_per"] = new_dic[element[1]]["neutral"]/new_dic[element[1]] ["total"]
+        new_dic[element[1]] ["pos_per"] = new_dic[element[1]]["positive"]/new_dic[element[1]] ["total"]
+    return new_dic
+    
+
 def summary_vic():
-    dic = { 2014: {},2015: {}, 2016: {}, 2017: {}, 2018: {}, 2019: {}, 2020: {}}
-    for item in db.view('Sentiment/SentimentScoreStat_BylgaNameTime', group_level=2,stale = "update_after"):
-        for i in range(2014,2021):
+    dic = { 2014: {},2015: {}, 2016: {}, 2017: {}, 2018: {}, 2019: {}, 2020: {},2021:{}}
+    for item in db.view('SummaryByRegion/SentimentScoreStat_BylgaNameTime', group_level=2,stale = "update_after"):
+        for i in range(2014,2022):
             if item['key'][1] == i:
                 try:
                     dic[i]['sum'] += item['value']['sum']
@@ -70,11 +97,11 @@ def summary_vic():
 
 def lga_year():
     yeardata = []
-    for item in db.view('Sentiment/SentimentScoreStat_BylgaNameTime', group_level=2,stale = "update_after"):
+    for item in db.view('SummaryByRegion/SentimentScoreStat_BylgaNameTime', group_level=2,stale = "update_after"):
         lis = [item["key"][0].strip('\\t'), item["key"][1],item["value"]['sum']/item["value"]['count']]
         yeardata.append(lis)
     dic = {}
-    for i in range(2015,2021):
+    for i in range(2015,2022):
         dic[i] = []
         for element in yeardata:
             dic1={}
