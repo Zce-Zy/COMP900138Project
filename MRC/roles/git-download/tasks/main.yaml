@@ -1,0 +1,32 @@
+---
+- name: create project working file
+  become: yes
+  raw: mkdir -p /home/ubuntu/comp90024
+
+- name: copy source code
+  become: yes
+  copy:
+    src: /home/rex/Downloads/Master-Comp90024-main.zip
+    dest: /home/ubuntu/comp90024/Master-Comp90024-main.zip
+    owner: ubuntu
+    group: ubuntu
+    mode: 0600
+
+- name: enter in source code file directory
+  become: yes
+  raw: cd /home/ubuntu/comp90024
+
+- name: install unzip package
+  become: yes
+  apt:
+    name: ['unzip']
+    state: latest
+ 
+
+- name: remove existing file
+  become: yes
+  raw: rm -rf /home/ubuntu/comp90024/Master-Comp90024-main
+
+- name: unzip source code file
+  become: yes
+  raw: unzip -d /home/ubuntu/comp90024 /home/ubuntu/comp90024/Master-Comp90024-main.zip

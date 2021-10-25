@@ -1,0 +1,48 @@
+---
+- name: remove container
+  become: yes
+  docker_container:
+    name: "{{ container_name }}"
+    state: absent
+
+- name: create working_dir directory
+  become: yes
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ working_dir }}"
+
+# docker run -p 5984:5984 --name couchdb -d couchdb
+- name: create container
+  become: yes
+  docker_container:
+    name: "{{ container_name }}"
+    image: "{{ container_image }}"
+    ports:
+      - "5984:5984"
+      - "4369:4369"
+      - "9100:9100"
+    volumes: 
+      - "/opt/couchdb/etc/vm.args:/opt/couchdb/etc/vm.args:rw"
+      - "/opt/couchdb/etc/local.ini:/opt/couchdb/etc/local.ini:rw"
+      - "/opt/couchdb/etc/config.ini:/opt/couchdb/etc/local.d/config.ini:rw"
+      - "/opt/couchdb/data:/opt/couchdb/data"
+#     - "/opt/couchdb/releases/3.1.1/sys.config:/opt/couchdb/releases/3.1.1/sys.config:ro"
+    env:
+      ERL_FLAGS: "-setcookie monster"
+      NODENAME: "couchdb"
+ 
+
+- name: copy couchdb shell file to server
+  become: yes
+  template:
+    src: db.sh
+    dest: /opt/couchdb
+
+- name: add note cluster 
+  become: yes
+  raw: bash /opt/couchdb/db.sh
+
+
+

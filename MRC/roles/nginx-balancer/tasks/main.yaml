@@ -1,0 +1,43 @@
+---
+- name: remove container
+  become: yes
+  docker_container:
+    name: "{{ container_name }}"
+    state: absent
+
+- name: create working_dir directory
+  become: yes
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ working_dir }}"
+
+- name: create nginx configuration file
+  become: yes
+  raw: mkdir -p /opt/nginx/conf.d
+
+- name: Copy nginx configuration file
+  become: yes
+  template:
+    src: default.conf
+    dest: /opt/nginx/conf.d/default.conf
+
+- name: chown nginx 
+  become: yes
+  raw: chown ubuntu:ubuntu /opt/nginx -R
+
+- name: create container
+  become: yes
+  #raw: docker run -d -p 80:80 -v "/opt:/usr/share/nginx/html:ro" -v "/opt/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro" "{{ container_name }}"
+  docker_container:
+    name: "{{ container_name }}"
+    image: "{{ container_image }}"
+    ports:
+      - "80:80"
+    volumes: 
+      - "/opt:/usr/share/nginx/html:ro"
+      - "/opt/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro"
+      
+
+
