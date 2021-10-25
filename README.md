@@ -24,3 +24,21 @@
   Name: Ziyangzhang\
   StudentID: 1078202
   
+# Platform Information: 
+Web address: http://45.113.233.215/project/html/home.html
+
+Location of CouchDB databases (only accessible within UniMelb network)
+
+
+Master Node:
+http://45.113.233.215:5984/_utils/
+
+Slave Node1:
+http://45.113.233.239:5984/_utils/
+
+Slave Node2:
+http://45.113.234.122:5984/_utils/
+
+
+
+
