@@ -1,7 +1,0 @@
----
-- name: copy couchdb config file to slaveNode1
-  become: yes
-  template:
-    src: vm.args
-    dest: /opt/couchdb/etc/vm.args
-
