@@ -1,0 +1,291 @@
+
+<div class="fl" style="width:60%;padding-right: 7px;">
+	<div class="item-wrap">
+		<h3 class="title">Yearly Percentage of Pos/Neg/Neu Count</h3>
+		<div id="echartYearlyCount" style="width: 100%;height:360px;"></div>
+	</div>
+</div>
+<div class="fl" style="width:40%;padding-left: 7px;">
+	<div class="item-wrap">
+		<h3 class="title">Yearly Sentiment Score</h3>
+		<div id="echartYearlyScore" style="width: 100%;height:360px;"></div>
+	</div>
+</div>
+
+<div class="fl" style="width:50%;padding-right: 7px;">
+	<div class="item-wrap">
+		<h3 class="title">Monthly Sentiment Score</h3>
+		<div id="echartMonthlyCount" style="width: 100%;height:360px;"></div>
+	</div>
+</div>
+<div class="fl" style="width:50%;padding-left: 7px;">
+	<div class="item-wrap">
+		<h3 class="title">Daily Sentiment Score</h3>
+		<div id="echartDaily" style="width: 100%;height:360px;"></div>
+	</div>
+</div>
+
+<div class="fl" style="width:70%;padding-right: 7px;">
+	<div class="item-wrap">
+		<h3 class="title">Sentiment Score in LockDown period</h3>
+		<div id="echartSentiment" style="width: 100%;height:360px;"></div>
+	</div>
+</div>
+<div class="fl" style="width:30%;padding-left: 7px;">
+	<div class="item-wrap">
+		<h3 class="title">Table of LockDown Date</h3>
+		<div class="table-box" style="width: 100%;height:360px;">
+			<p><span>LockDown1</span><span class="time">2020.03.31-2020.05.12</span></p>
+			<p><span>LockDown2</span><span class="time">2020.07.09-2020.10.17</span></p>
+			<p><span>LockDown3</span><span class="time">2021.02.13-2020.02.17</span></p>
+			<p><span>LockDown4</span><span class="time">2021.05.28-2021.06.10</span></p>
+			<p><span>LockDown5</span><span class="time">2021.07.16-2021.07.27</span></p>
+		</div>
+	</div>
+</div>
+
+<script src="../../static/js/jquery-3.6.0.min.js"></script>
+<script src="../../static/js/echarts.min.js"></script>
+<script>
+	$.getJSON("../../static/json/yearsenti.json", "", function(data) {
+			let sourceData = [];
+			for(var key in data){
+				let dataItem = {
+					product: key, negative: data[key].neg_per, neutral: data[key].neu_per, positive:  data[key].pos_per 
+				}
+				sourceData.push(dataItem);
+			}
+			
+			var YearlyCountchartDom = document.getElementById('echartYearlyCount');
+			var YearlyCountChart = echarts.init(YearlyCountchartDom);
+			var YearlyCountOption = {
+				grid: {
+					left: '2%',
+					right: '2%',
+					bottom: '3%',
+					containLabel: true
+				},
+			  legend: {},
+			  tooltip: {},
+			  dataset: {
+			    dimensions: ['product', 'negative', 'neutral', 'positive'],
+			    source: sourceData
+			  },
+			  xAxis: { type: 'category' },
+			  yAxis: {},
+			  // Declare several bar series, each will be mapped
+			  // to a column of dataset.source by default.
+			  series: [{ type: 'bar',barWidth : 10 }, { type: 'bar',barWidth : 10 }, { type: 'bar',barWidth : 10 }]
+			};
+			YearlyCountOption && YearlyCountChart.setOption(YearlyCountOption);
+			window.addEventListener("resize", function() {
+			 	YearlyCountChart.resize();
+			});
+		})
+		
+		$.getJSON("../../static/json/yearsentimelb.json", "", function(data) {
+				//console.log('data',data)
+				let legendData = [];
+				let seriesData = [];
+				for(var key in data){
+					   legendData.push(key);
+					   seriesData.push(data[key]);
+				}
+				
+				var PlatdataChart = echarts.init(document.getElementById('echartYearlyScore'));
+				
+				var PlatdataOption = {
+					grid: {
+						left: '2%',
+						right: '2%',
+						bottom: '3%',
+						containLabel: true
+					},
+						tooltip: {},
+					  xAxis: {
+						type: 'category',
+						data: legendData
+					  },
+					  yAxis: {
+						type: 'value'
+					  },
+					  series: [
+						{
+						  data: seriesData,
+						  type: 'line',
+						  smooth: true
+						}
+					  ]
+					};
+				PlatdataChart.setOption(PlatdataOption);
+				window.addEventListener("resize", function() {
+					PlatdataChart.resize();
+				});
+				
+			})
+			
+		$.getJSON("../../static/json/monthsent.json", "", function(data) {
+				let legendData = [];
+				let seriesData = [];
+				let xAxisData = [];
+				for(var key in data){
+				   //console.log('------',data[key].length)
+				   legendData.push(key);
+				   var arr = []
+				   for (let i in data[key]) {
+					   arr.push(data[key][i]); //属性
+				   }
+				   let dataItem = {
+						name: key,
+						type: 'bar',
+						data: arr
+				   }
+				   seriesData.push(dataItem);
+				}
+				
+				var echartMonthlyChart = echarts.init(document.getElementById('echartMonthlyCount'));
+				
+				var echartMonthlyOption = {
+				  tooltip: {
+				    trigger: 'axis',
+				    axisPointer: {
+				      type: 'cross',
+				      crossStyle: {
+				        color: '#999'
+				      }
+				    }
+				  },
+				  grid: {
+				  	left: '2%',
+				  	right: '2%',
+				  	bottom: '3%',
+				  	containLabel: true
+				  },
+				  legend: {
+				    data: legendData 
+				  },
+				  xAxis: [
+				    {
+				      type: 'category',
+				      axisPointer: {
+				        type: 'shadow'
+				      }
+				    }
+				  ],
+				  yAxis: [
+				    {
+				      type: 'value',
+				     
+				      min: 0,
+				      max: 0.20,
+				      interval: 0.01
+				    }
+				  ],
+				  series: seriesData
+				};
+				echartMonthlyChart.setOption(echartMonthlyOption);
+				window.addEventListener("resize", function() {
+					echartMonthlyChart.resize();
+				});
+			})
+		function getDaily(){
+			let JsonUrl = `http://45.113.233.215:8080/api/senti`;
+			$.ajax({
+				type : "get",  
+				url : JsonUrl,  
+				dataType : "json",//数据类型为json
+				success:function(data){
+					//console.log('data',data)
+					let seriesData = [];
+					let xAxisData = [];
+					for(var key in data){
+					   xAxisData.push(data[key].day)
+					   seriesData.push(data[key].value);
+					}
+					var echartDailyChart = echarts.init(document.getElementById('echartDaily'));
+					
+					var echartDailyOption = {
+						grid: {
+							left: '2%',
+							right: '2%',
+							bottom: '3%',
+							containLabel: true
+						},
+						  xAxis: {
+							type: 'category',
+							data:xAxisData
+						  },
+						  yAxis: {
+							type: 'value'
+						  },
+						  series: [
+							{
+							  data: seriesData,
+							  type: 'bar'
+							}
+						  ],
+						  dataZoom: [{
+							type: 'slider',
+							show: true, //flase直接隐藏图形
+							xAxisIndex: [0],
+							left: '3%', //滚动条靠左侧的百分比
+							right: '3%',
+							bottom: -5,
+							start: 0,//滚动条的起始位置
+							end: 50 //滚动条的截止位置（按比例分割你的柱状图x轴长度）
+						}] 
+						};
+					echartDailyChart.setOption(echartDailyOption);
+					window.addEventListener("resize", function() {
+						echartDailyChart.resize();
+					});
+					
+					
+					
+				},
+			})
+		}getDaily();
+		
+		
+		$.getJSON("../../static/json/lockdowndata.json", "", function(data) {
+				//console.log('data',data)
+				let legendData = [];
+				let seriesData = [];
+				for(var key in data){
+					   legendData.push(key);
+					   seriesData.push(data[key]);
+				}
+				
+				var echartSentimentChart = echarts.init(document.getElementById('echartSentiment'));
+				
+				var echartSentimentOption = {
+					color:['#91CC75'],
+						grid: {
+							left: '2%',
+							right: '2%',
+							bottom: '3%',
+							containLabel: true
+						},
+						tooltip: {},
+					  xAxis: {
+						type: 'category',
+						data: legendData
+					  },
+					  yAxis: {
+						type: 'value'
+					  },
+					  series: [
+						{
+						  data: seriesData,
+						  type: 'line',
+						  smooth: true
+						}
+					  ]
+					};
+				echartSentimentChart.setOption(echartSentimentOption);
+				window.addEventListener("resize", function() {
+					echartSentimentChart.resize();
+				});
+				
+			})
+</script>

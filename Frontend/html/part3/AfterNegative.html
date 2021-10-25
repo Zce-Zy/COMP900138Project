@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+	
+	
+	<link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.css" rel="stylesheet">
+	<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="../../static/css/project.css">
+	<!-- 引入 layui.js -->
+	
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="https://cdn.jsdelivr.net/npm/iso8601-js-period@0.2.1/iso8601.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.1/dist/leaflet.timedimension.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/pa7_hm.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/pa7_leaflet_hm.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.1/dist/leaflet.timedimension.control.css"/>
+	
+</head>
+<body>    
+			<div class="main-header">
+				<div class="logo">
+					<a href="../home.html" style="display: block;width:60px;height:60px"></a>
+				</div>
+				<div class="navWrap">
+					<a href="../part1/genaral.html">Genaral Analysis</a>
+					<a href="../part2/NLP.html">NLP and Prediction</a>
+					<a class="current" href="LGAMap.html">Sentiment Analysis</a>
+				</div>
+			</div>
+			<div class="container-wrap">
+				<div class="sideNav">
+					<a href="LGAMap.html">LGA Map</a>
+					<a class="current"  href="BeforeAll.html">Analysis</a>
+				</div>
+				
+				<div class="main-inner clearfix">
+					 <div class="folium-map" id="map_56c61c2ddf4448f399357eaebd5d7998" ></div>
+					 <div class="navBar">
+					 	<a href="BeforeNeutral.html">Before COVID-19</a>
+					 	<a class="current"  href="AfterAll.html">After COVID-19</a>
+					 </div>
+					 
+					 <div class="sideBar">
+					 	<a  href="AfterNeutral.html">neutral</a>
+						<a class="current" href="#">negative</a>
+					 	<a href="AfterPositive.html">positive</a>
+					 </div>
+					 
+					 
+					 
+					 <div id="modelPage">
+					 						 
+					 </div>
+				</div>
+			</div>
+           
+			
+			
+			
+</body>
+<script>    
+			$(document).ready(function(){
+			　　$("#modelPage").load("model.html")
+			});
+	
+			var neutralMarkers=[];
+			
+            var map_56c61c2ddf4448f399357eaebd5d7998 = L.map(
+                "map_56c61c2ddf4448f399357eaebd5d7998",
+                {
+                    center: [-37.813611, 144.963056],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+    
+            var tile_layer_c8a8f9b82eee4791a23a3db5d2b45ca9 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_56c61c2ddf4448f399357eaebd5d7998);
+			function numFilter(value) {
+				// 截取当前数据到小数点后四位
+				let tempVal = parseFloat(value).toFixed(7)
+				/* let realVal = tempVal.substring(0, tempVal.length - 1) */
+				return tempVal
+			};
+		function getData(Url){
+			$.ajax({  
+				type : "get",  
+				url : Url,  
+				dataType : "json",//数据类型为json
+				success:function(data){
+					//console.log('data',data)
+					let List = data;
+					if(List.length > 0){
+						for (var i = 0; i < List.length; i++) {
+							if(List[i].type == 'negative'){
+								//console.log('List[i].type',i,List[i])
+								//自定义的circleMarker
+								var markerItem = L.circleMarker([numFilter(List[i].coordinate[0]),numFilter(List[i].coordinate[1])], {
+									stroke: true,
+									color: '#cc0000',
+									weight: 1,
+									opacity: 1,
+									fillColor: '#cc0000',
+									fillOpacity: 1,
+									radius: 1
+								});
+								neutralMarkers.push(markerItem);
+								var citiesLayer = L.layerGroup(neutralMarkers);
+								map_56c61c2ddf4448f399357eaebd5d7998.addLayer(citiesLayer);
+								
+							}
+						}
+					}
+					
+				},
+				error:function(){
+					alert('error')
+				}
+			});
+		}
+		
+		$(function(){
+			let jsonUrl = `../../static/json/afterCOVID.json`
+			getData(jsonUrl);
+		});
+</script>

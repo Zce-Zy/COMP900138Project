@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+	
+	
+	<link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.css" rel="stylesheet">
+	<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="../../static/css/project.css">
+	<!-- 引入 layui.js -->
+	<link rel="stylesheet" href="../../static/js/layui/css/layui.css">
+	
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+				.dataInfo{
+					position: fixed;
+					top: 75px;
+					right: 0;
+					z-index: 9999;
+					width:400px;
+					padding: 15px;
+					border-radius: 6px;
+					background-color:#fff;
+					color:#333;
+					font-size:12px;
+					box-shadow: 0 0 6px #e4e4e4;
+				}
+				.dataInfo *{
+					padding:0;
+					margin:0;
+				}
+				.dataInfo .title{
+					padding: 10px 15px;
+					margin-bottom:15px;
+					background: #A1D36D;
+					color: #fff;
+					font-size: 18px;
+				}
+				
+				.hotTopic p{
+					font-size:12px;
+					line-height:24px;
+				}
+				.wordImg{
+					margin-top:15px;
+					margin-bottom:15px;
+				}
+				.img{
+					width:370px;
+					height:200px;
+					background:url() no-repeat center;
+					background-size:100% 100%;
+				}
+				.noData{
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					z-index: 99;
+					font-size: 20px;
+					/* text-align: left; */
+					/* width: 100%; */
+					transform: translate(-50%, -50%);
+				}
+			
+				
+				.wordTop{
+					height:auto;
+					overflow:hidden;
+				}
+				.wordTop .header{
+					font-size: 14px;
+					font-weight: 600;
+					border-bottom: 2px solid #000;
+					padding-bottom: 5px;
+					text-align: right;
+					padding-right: 90px;
+					position: relative;
+				}
+				.wordTop .header>span{
+					position: absolute;
+					right: 5px;
+				}
+				.topWrap{
+					max-height: 192px;
+					overflow-y: auto;
+				}
+				.topWrap p{
+					height: 32px;
+					line-height: 32px;
+					padding: 0 6px;
+					font-size: 14px;
+					font-weight: 600;
+					padding-right: 90px;
+					text-align: right;
+					position: relative;
+				}
+				.topWrap p:nth-child(odd){
+					background:#F5F5F5
+				}
+				.topWrap p .num{
+					float:left;
+				}
+				.topWrap p .total{
+					position: absolute;
+					right: 6px;
+				}
+				.leaflet-top{
+					top:55px
+				}
+				
+				.dateTime{
+					position: fixed;
+					top: 75px;
+					left: 195px;
+					z-index: 9999;
+					width:200px;
+				}
+				.input-group-addon{
+					border:none;
+					cursor:pointer;
+					background:#A1D36D;
+					color:#fff;
+				}
+            </style>
+        
+    <script src="https://cdn.jsdelivr.net/npm/iso8601-js-period@0.2.1/iso8601.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.1/dist/leaflet.timedimension.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/pa7_hm.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/pa7_leaflet_hm.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.1/dist/leaflet.timedimension.control.css"/>
+	
+	<script src="../../static/js/echart3.js"></script>
+	<script src="../../static/js/echarts-wordcloud.js"></script>
+</head>
+<body>    
+			<div class="main-header">
+				<div class="logo">
+					<a href="../home.html" style="display: block;width:60px;height:60px"></a>
+				</div>
+				<div class="navWrap">
+					<a class="current" href="genaral.html">Genaral Analysis</a>
+					<a href="../part2/NLP.html">NLP and Prediction</a>
+					<a href="../part3/LGAMap.html">Sentiment Analysis</a>
+				</div>
+			</div>
+			<div class="container-wrap">
+				<div class="sideNav">
+					<a href="genaral.html">Line Graph</a>
+					<a class="current" href="#">Map</a>
+					<a href="tweetCluster/tweet0.html">Cluster</a>
+				</div>
+				
+				<div class="main-inner clearfix">
+					
+					 <div class="folium-map" id="map_56c61c2ddf4448f399357eaebd5d7998" ></div>
+					 <div class="dateTime" id="dateTime">
+					 	<div class="input-group">
+					 	  <input type="text" class="form-control">
+					 	  <span class="input-group-addon" id="searchTime">Search</span>
+					 	</div>
+					 </div>
+					 
+					 <div class="dataInfo">
+					 	<div class="hotTopic">
+					 		<h3 class="title">Hot topic</h3>
+					 		<div id="topic">No data</div>
+					 	</div>
+					 	<div class="wordImg">
+					 		<h3 class="title">Hot words</h3>
+					 		<div id="wordImg" class="img"></div>
+					 		<div class="noData">No data</div>
+					 	</div>
+					 	<div class="wordTop">
+					 		<h3 class="title">Noun ranking</h3>
+					 		<h3 class="header">Noun/Phrase <span>Count</span></h3>
+					 		<div id="topWrap" class="topWrap">
+					 			No data
+					 		</div>
+					 	</div>
+					 	
+					 </div>
+				</div>
+			</div>
+           
+			
+			
+			
+    <script src="../../static/js/layui/layui.js"></script>    
+</body>
+<script>    
+			
+	
+			var TwitterMarkers=[], FlickrMarkers = [], YoutubeMarkers = [];
+			var topicday = [],hashtag = [],scater =[];
+			
+            var map_56c61c2ddf4448f399357eaebd5d7998 = L.map(
+                "map_56c61c2ddf4448f399357eaebd5d7998",
+                {
+                    center: [-37.8043086,144.9750512],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 14,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+    
+            var tile_layer_c8a8f9b82eee4791a23a3db5d2b45ca9 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_56c61c2ddf4448f399357eaebd5d7998);
+        
+		function getTopicday(Url){
+			$.ajax({  
+				type : "get",  
+				url : Url,  
+				dataType : "json",//数据类型为json
+				success:function(data){
+					topicday = data;
+					//console.log('topicday',topicday)
+					if(topicday.length > 0){
+						var topicStr = '';
+						for(var i = 0; i < topicday.length; i++){
+							topicStr += `<p>"${topicday[i]}"</p>`;
+						};
+						$("#topic").html(topicStr);
+					}else{
+						$("#topic").html("No data");
+					}
+				},
+				error:function(){
+					alert('error')
+				}
+			});
+			
+		}
+		function getHashtag(Url){
+			$.ajax({  
+				type : "get",  
+				url : Url,  
+				dataType : "json",//数据类型为json
+				success:function(data){
+					hashtag = data;
+					//console.log('hashtag',hashtag)
+					let topWrap = hashtag;
+					//console.log('topWrap.length',topWrap,topWrap.length)
+					if(topWrap !='[]' && topWrap.length > 0){
+						var str = '';
+						for (let i = 0; i < 6; i++) {
+							str += `<p><span class="num">${i}</span>${topWrap[i].name}<span class="total">${topWrap[i].value}</span></p>`
+						}
+						jQuery("#topWrap").html(str);
+						jQuery("#wordImg").next('.noData').hide();
+						var myChart = echarts3.init(document.getElementById('wordImg'));
+						var option = {
+								series: [{
+									type: 'wordCloud',
+									sizeRange: [15, 80],
+									rotationRange: [0, 0],
+									rotationStep: 45,
+									gridSize: 8,
+									shape: 'pentagon',
+									width: '100%',
+									height: '100%',
+									textStyle: {
+										normal: {
+											color: function () {
+												return 'rgb(' + [
+													Math.round(Math.random() * 160),
+													Math.round(Math.random() * 160),
+													Math.round(Math.random() * 160)
+												].join(',') + ')';
+											}
+										}
+									},
+									data: hashtag
+								}]
+							};
+						// 使用刚指定的配置项和数据显示图表。
+						myChart.setOption(option);
+						/*window.addEventListener("resize", function() {
+							myChart.resize();
+						});*/
+						
+					}else{
+						jQuery("#topWrap").html("No data");
+					}	
+					
+				},
+				error:function(){
+					alert('error')
+				}
+			});
+		}
+		function getScaterDay(Url){
+			$.ajax({  
+				type : "get",  
+				url : Url,  
+				dataType : "json",//数据类型为json
+				success:function(data){
+					scater = data;
+					//console.log('scater',scater.twitter)
+					let ListTwitter = scater.twitter;
+					if(ListTwitter.length > 0){
+						for (var i = 0; i < ListTwitter.length; i++) {
+							//console.log('list,',ListTwitter[i])
+							//自定义的circleMarker
+							var markerItem = L.circleMarker([ListTwitter[i][1][0],ListTwitter[i][1][1]], {
+								stroke: true,
+								color: '#2D8EC5',
+								weight: 1,
+								opacity: 1,
+								fillColor: '#2D8EC5',
+								fillOpacity: 0.3,
+								radius: 8
+							});
+							TwitterMarkers.push(markerItem);
+							TwitterMarkers[i].addTo(map_56c61c2ddf4448f399357eaebd5d7998);
+							
+							//console.log('ListTwitter[i][2]',ListTwitter[i][2])
+							var popupItem = L.popup({"maxWidth": "100%"});
+							var htmlItem = $(`<div id="htmlItem" style="width:200px; height: 100.0%;">
+								<p style="background:#2D8EC5;color:#fff;padding:10px;border-radius:6px;">"${ListTwitter[i][0]}"</p>
+								<p>${ListTwitter[i][2]}</p>
+							</div>`)[0];
+							popupItem.setContent(htmlItem);
+							TwitterMarkers[i].bindPopup(popupItem)
+							
+						}
+					}
+					
+					let ListFlickr = scater.flickr;
+					if(ListFlickr.length > 0){
+						for (var i = 0; i < ListFlickr.length; i++) {
+							//console.log('list,',ListFlickr[i])
+							//自定义的circleMarker
+							var flickrItem = L.circleMarker([ListFlickr[i][1][0],ListFlickr[i][1][1]], {
+								stroke: true,
+								color: '#FF0084',
+								weight: 1,
+								opacity: 1,
+								fillColor: '#FF0084',
+								fillOpacity: 0.2,
+								radius: 8
+							});
+							FlickrMarkers.push(flickrItem);
+							FlickrMarkers[i].addTo(map_56c61c2ddf4448f399357eaebd5d7998);
+							
+							//console.log('ListFlickr[i][2]',ListFlickr[i][2])
+							var popupFItem = L.popup({"maxWidth": "100%"});
+							var htmlFItem = $(`<div id="htmlFItem" style="width:200px; height: 100.0%;">
+								<p style="background:#FF0084;color:#fff;padding:10px;border-radius:6px;">"${ListFlickr[i][0]}"</p>
+								<p>${ListFlickr[i][2]}</p>
+							</div>`)[0];
+							popupFItem.setContent(htmlFItem);
+							FlickrMarkers[i].bindPopup(popupFItem)
+						}
+					
+					}
+					
+					if(scater.youtube.length > 0){
+						let ListYoutube = scater.youtube;
+						for (var i = 0; i < ListYoutube.length; i++) {
+							//console.log('list,',ListYoutube[i])
+							//自定义的circleMarker
+							var youtubeItem = L.circleMarker([ListYoutube[i][1][0],ListYoutube[i][1][1]], {
+								stroke: true,
+								color: '#FE0000',
+								weight: 1,
+								opacity: 1,
+								fillColor: '#FE0000',
+								fillOpacity: 0.2,
+								radius: 8
+							});
+							YoutubeMarkers.push(youtubeItem);
+							YoutubeMarkers[i].addTo(map_56c61c2ddf4448f399357eaebd5d7998);
+							
+							//console.log('ListYoutube[i][2]',ListYoutube[i][2])
+							var popupYItem = L.popup({"maxWidth": "100%"});
+							var htmlYItem = $(`<div id="htmlYItem" style="width:200px; height: 100.0%;">
+									<p  style="background:#FE0000;color:#fff;padding:10px;border-radius:6px;">"${ListYoutube[i][0]}"</p>
+									<p>${ListYoutube[i][2]}</p>
+							</div>`)[0];
+							popupYItem.setContent(htmlYItem);
+							YoutubeMarkers[i].bindPopup(popupYItem)
+						}
+					}
+					
+					
+					
+				},
+				error:function(){
+					alert('error')
+				}
+			});
+		}
+		$('#dateTime input').val('2021-01-01');
+		getScaterDay(`http://45.113.233.215:8080/api/topicday/2021,1,1`);
+		getHashtag(`http://45.113.233.215:8080/api/hashtag/2021,1,1`);
+		getTopicday(`http://45.113.233.215:8080/api/topicday/2021,1,1`);
+		$(function(){
+			$('#dateTime input').datepicker({
+				format: 'yyyy-mm-dd',
+				//language:"zh-CN"
+			})
+			var layer;
+			layui.use(function(){
+				layer = layui.layer;
+			});
+			
+			$("#searchTime").on("click", function() {
+				let inputText = $('#dateTime input').val();
+				if(!inputText){
+					layer.msg('Please select a search date', { icon: 7, time: 1500, shade: [0.6, '#000', true] });
+				}
+				inputText = inputText.split('-');
+				for (var i = 0; i < inputText.length; i++) {
+					var prefix = inputText[i].substring(0,1);
+					if(prefix == 0){
+						inputText[i] = inputText[i].substring(1);
+					}
+				}
+				//console.log('inputText' + inputText)
+				let topicdayUrl = `http://45.113.233.215:8080/api/topicday/${inputText}`;
+				let hashtagUrl = `http://45.113.233.215:8080/api/hashtag/${inputText}`;
+				let scaterUrl = `http://45.113.233.215:8080/api/scater/day/${inputText}`
+				
+				getScaterDay(scaterUrl);
+				getHashtag(hashtagUrl);
+				getTopicday(topicdayUrl);				
+				
+				
+				//var citiesLayer = L.layerGroup(markers);
+				//map_56c61c2ddf4448f399357eaebd5d7998.addLayer(citiesLayer);
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			});
+		})
+</script>

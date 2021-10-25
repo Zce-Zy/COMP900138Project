@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Genaral Analysis</title>
+		<link rel="stylesheet" href="../../static/js/layui/css/layui.css">
+		<link rel="stylesheet" href="../../static/css/project.css">
+	</head>
+	<body>
+		<div class="main-header">
+			<div class="logo">
+				<a href="../home.html" style="display: block;width:60px;height:60px"></a>
+			</div>
+			<div class="navWrap">
+				<a class="current" href="#">Genaral Analysis</a>
+				<a href="../part2/NLP.html">NLP and Prediction</a>
+				<a href="../part3/LGAMap.html">Sentiment Analysis</a>
+			</div>
+		</div>
+		<div class="container-wrap">
+			<div class="sideNav">
+				<a class="current" href="#">Line Graph</a>
+				<a href="map.html">Map</a>
+				<a href="tweetCluster/tweet0.html">Cluster</a>
+			</div>
+			
+			<div class="main-inner clearfix">
+				<div class="item-wrap">
+					<h3 class="title">Total Count in a day</h3>
+					<button class="layui-btn layui-btn-normal" id="test2">select</button>
+					<div id="main" style="width: 100%;height:360px;"></div>
+				</div>
+				<div class="fl" style="width:50%;padding-right: 7px;">
+					<div class="item-wrap ">
+						<h3 class="title">Hourly posts in a day</h3>
+						<button class="layui-btn layui-btn-normal" id="daySearch">select</button>
+						<div id="echartDay" style="width: 100%;height:360px;"></div>
+					</div>
+				</div>
+				<div class="fl" style="width:50%;padding-left: 7px;">
+					<div class="item-wrap ">
+						<h3 class="title">Hourly posts of different platforms</h3>
+						<div id="echartPlatdata" style="width: 100%;height:397px;"></div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+		</div>
+		
+		
+		<script type="text/javascript" src="../../static/js/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="../../static/js/echarts.min.js"></script>
+		<script type="text/javascript" src="../../static/js/layui/layui.js"></script>
+		
+		
+		
+		<script>
+		function getMonthData(Url){
+			$.ajax({  
+				type : "get",  
+				url : Url,  
+				dataType : "json",//数据类型为json
+				success:function(data){
+					//console.log('topicday',data)
+					var myChart = echarts.init(document.getElementById('main'));
+						    
+						var data0=[];
+					  var data_flickr=[];
+						var data_twitter=[];
+						var data_youtube=[];
+						   for (let i = 0; i < data.flickr.length; i++) {
+					               
+									data0.push(data.flickr[i].date.replaceAll(',', '/'));
+									
+									data_flickr.push(data.flickr[i].value);
+									
+					       }
+						 
+						   for (let i = 0; i < data.twitter.length; i++) {
+					
+					 	            data_twitter.push(data.twitter[i].value);
+									
+					       }
+					
+						   for (let i = 0; i < data.youtube.length; i++) {
+					               	data_youtube.push(data.youtube[i].value);
+									
+					       }
+					
+						var option = {
+										tooltip: {
+											trigger: 'axis',
+											axisPointer: {
+												type: 'shadow'
+											}
+										},
+										legend: {},
+										grid: {
+											left: '3%',
+											right: '4%',
+											bottom: '3%',
+											containLabel: true
+										},
+										xAxis: [{
+												type: 'category',
+											}
+										],
+										yAxis: [{
+											type: 'value',
+											interval: 50
+										  }
+										],
+								series: [
+										{
+											name: 'twitter',
+											type: 'bar',
+											stack: 'Ad',
+											emphasis: {
+											  focus: 'series'
+											},
+											data: data_twitter
+										},
+										{
+											name: 'flickr',
+											type: 'bar',
+											stack: 'Ad',
+											emphasis: {
+											  focus: 'series'
+											},
+											data: data_flickr
+										},
+										{
+											name: 'youtube',
+											type: 'bar',
+											stack: 'Ad',
+											emphasis: {
+											  focus: 'series'
+											},
+											data: data_youtube
+										}
+					  ]
+					};
+					       // 使用刚指定的配置项和数据显示图表。
+				   myChart.setOption(option);
+					window.addEventListener("resize", function() {
+						myChart.resize();
+					});
+					
+					
+					
+					
+				},
+				error:function(){
+					alert('error')
+				}
+			});
+			
+		}
+		function getDayData(Url){
+			$.ajax({  
+				type : "get",  
+				url : Url,  
+				dataType : "json",//数据类型为json
+				success:function(data){
+					//console.log('topicday',data)
+					var data0=[];
+					var Total=[];
+					var Max=[];
+					var Avg=[];
+					for (let i = 0; i < 24; i++) {
+						//console.log(data.dataList[i].total)
+						data0.push(i + 1);
+						Total.push(data.dataList[i].total);
+						Max.push(data.dataList[i].max);
+						Avg.push(data.dataList[i].avg);
+					}
+		
+					var myDayChart = echarts.init(document.getElementById('echartDay'));
+					
+					var DayOption = {
+					  tooltip: {
+					    trigger: 'axis',
+					    axisPointer: {
+					      type: 'cross',
+					      crossStyle: {
+					        color: '#999'
+					      }
+					    }
+					  },
+					  
+					  legend: {
+					    data: ['Total Number of Posts', 'Max Number of Posts', 'Avg Number of Posts']
+					  },
+					  xAxis: [
+					    {
+					      type: 'category',
+					      data: data0,
+					      axisPointer: {
+					        type: 'shadow'
+					      }
+					    }
+					  ],
+					  yAxis: [
+					    {
+					      type: 'value',
+					     
+					      min: 0,
+					      max: 0.20,
+					      interval: 0.01
+					    },
+					    {
+					      type: 'value',
+					      
+					      min: 0,
+					      max: 0.20,
+					      interval: 0.01
+					    }
+					  ],
+					  series: [
+					    {
+					      name: 'Total Number of Posts',
+					      type: 'bar',
+					      data: Total
+					    },
+					    {
+					      name: 'Max Number of Posts',
+					      type: 'line',
+					      data: Max
+					    },
+					    {
+					      name: 'Avg Number of Posts',
+					      type: 'line',
+					      data: Avg
+					    }
+					  ]
+					};
+					myDayChart.setOption(DayOption);
+					window.addEventListener("resize", function() {
+						myDayChart.resize();
+					});
+					
+					
+					
+					
+				},
+				error:function(){
+					alert('error')
+				}
+			});
+			
+		}
+		getMonthData(`http://45.113.233.215:8080/api/test/2021,9`);
+		getDayData(`http://45.113.233.215:8080/api/dailyview/2021,10,1`);
+		layui.use(function(){
+		  var layer = layui.layer
+		  ,laydate = layui.laydate;
+		  
+		  //日期
+		  laydate.render({
+		    elem: '#test2',
+			type: 'month',
+			lang: 'en',
+			done: function(value, date){
+				if(!value){
+					layer.msg('Please select a search date', { icon: 7, time: 1500, shade: [0.6, '#000', true] });
+				}
+				//layer.alert('你选择的日期是：' + value + '<br>获得的对象是' + JSON.stringify(date));
+				let searchVal = date.year+','+ date.month + ',1';
+				//console.log('searchVal',searchVal)
+				let MonthUrl = `http://45.113.233.215:8080/api/test/${searchVal}`;
+				getMonthData(MonthUrl);
+		    }
+		  });
+		  //天
+			laydate.render({
+				elem: '#daySearch',
+				lang: 'en',
+				done: function(value, date){
+					if(!value){
+						layer.msg('Please select a search date', { icon: 7, time: 1500, shade: [0.6, '#000', true] });
+					}
+					//layer.alert('你选择的日期是：' + value + '<br>获得的对象是' + JSON.stringify(date));
+					let dayUrl = `http://45.113.233.215:8080/api/dailyview/${searchValDay}`;
+					getDayData(dayUrl);
+				}
+			});
+		  
+		 
+		});
+		</script>
+		<script>
+			$(function(){
+				$.getJSON("../../static/json/platdata.json", function(data) {
+				    　  //each循环 使用$.each方法遍历返回的数据date
+				    /*   $.each(data.first, function(i, item) {
+				            var str = '<div>姓名:' + item.name + '性别：' + item.sex + '</div>';
+				            document.write(str);
+				       }) */
+					   
+					   //console.log('data',data);
+					   let legendData = [];
+					   let seriesData = [];
+					   let xAxisData = [];
+					   for(var key in data){
+						   legendData.push(key);
+						   var arr = []
+						   for (let i in data[key]) {
+						       arr.push(data[key][i]); //属性
+						   }
+						   let dataItem = {
+								name: key,
+								type: 'line',
+								data: arr
+						   }
+						   seriesData.push(dataItem);
+					   }
+					   
+					   var PlatdataChart = echarts.init(document.getElementById('echartPlatdata'));
+					   
+					   var PlatdataOption = {
+					     tooltip: {
+					       trigger: 'axis',
+					       axisPointer: {
+					         type: 'cross',
+					         crossStyle: {
+					           color: '#999'
+					         }
+					       }
+					     },
+					     
+					     legend: {
+					       data: legendData 
+					     },
+					     xAxis: [
+					       {
+					         type: 'category',
+					         axisPointer: {
+					           type: 'shadow'
+					         }
+					       }
+					     ],
+					     yAxis: [
+					       {
+					         type: 'value',
+					        
+					         min: 0,
+					         max: 0.20,
+					         interval: 0.01
+					       },
+					       {
+					         type: 'value',
+					         
+					         min: 0,
+					         max: 0.20,
+					         interval: 0.01
+					       }
+					     ],
+					     series: seriesData
+					   };
+					   PlatdataChart.setOption(PlatdataOption);
+					   window.addEventListener("resize", function() {
+					   	PlatdataChart.resize();
+					   });
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+				});
+				
+				
+			})
+		</script>
+	</body>
+</html>

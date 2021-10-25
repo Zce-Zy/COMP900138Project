@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="../../../static/css/project.css">
+</head>
+<body>    
+    <div class="main-header">
+    	<div class="logo">
+    		<a href="../../home.html" style="display: block;width:60px;height:60px"></a>
+    	</div>
+    	<div class="navWrap">
+    		<a class="current" href="../genaral.html">Genaral Analysis</a>
+    		<a href="../../part2/NLP.html">NLP and Prediction</a>
+    		<a href="">Sentiment Analysis</a>
+    	</div>
+    </div>
+    <div class="container-wrap">
+    	<div class="sideNav">
+    		<a href="../genaral.html">Line Graph</a>
+    		<a href="../map.html">Map</a>
+    		<a class="current" href="../tweetCluster/tweet0.html">Cluster</a>
+    	</div>
+    	
+    	<div class="main-inner clearfix">
+			
+            <div class="folium-map" id="map_7c94f1a697ff4158a03d42a625dc8b66" ></div>
+			
+			<div class="navBar">
+				<a href="../tweetCluster/tweet0.html">tweetCluster</a>
+				<a class="current" href="flickr0.html">flickrCluster</a>
+			</div>
+			
+			<div class="sideBar">
+				<a class="current" href="flickr2-5.html">02:00-05:00</a>
+				<a href="flickr7-10.html">07:00-10:00</a>
+				<a href="flickr12-15.html">12:00-15:00</a>
+				<a href="flickr19-21.html">18:00-21:00</a>
+				
+				<a class="heatMapBtn" style="margin-top:20px;" href="flickr_heatMap.html">HeatMap</a>
+			</div>
+        </div>
+	</div>
+</body>
+<script>    
+    
+            var map_7c94f1a697ff4158a03d42a625dc8b66 = L.map(
+                "map_7c94f1a697ff4158a03d42a625dc8b66",
+                {
+                    center: [-37.813611, 144.963056],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 11,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+			/* 调用接口 */
+			function getDatas(Url){
+				$.ajax({  
+					type : "get",  
+					url : Url,  
+					dataType : "json",//数据类型为json
+					success:function(data){
+						//console.log('data',data)
+					},
+					error:function(){
+						alert('error')
+					}
+				});
+			}
+			
+			$(function(){
+				let jsonUrl = `http://45.113.233.215:8080/api/flickrclusterh/2`
+				getDatas(jsonUrl);
+			});
+            
+
+			var tile_layer_df6ecd46896445e4a2b54007a6c7cdd6 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_7c94f1a697ff4158a03d42a625dc8b66);
+
+        
+</script>
