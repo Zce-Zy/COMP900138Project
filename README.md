@@ -25,7 +25,7 @@
   StudentID: 1078202
   
 # Platform Information: 
-Web address: http://45.113.233.215/project/html/home.html
+Web demo address: https://www.youtube.com/watch?v=ym48J0kX7y4!
 
 Location of CouchDB databases (only accessible within UniMelb network)
 
